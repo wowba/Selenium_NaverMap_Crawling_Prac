@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+
 import time
 
 from pymongo import MongoClient
@@ -15,8 +16,8 @@ db = client.toyproj
 
 # 검색어 설정.
 seoul_gus = ["도봉구 맛집","노원구 맛집","강북구 맛집","은평구 맛집","성북구 맛집","중랑구 맛집","동대문구 맛집","종로구 맛집","서대문구 맛집",
-            "중구 맛집", "성동구 맛집","광진구 맛집","용산구 맛집","마포구 맛집","강서구 맛집","양천구 맛집","구로구 맛집","영등포구 맛집","동작구 맛집","금천구 맛집",
-           "관악구 맛집","서초구 맛집","강남구 맛집","송파구 맛집","강동구 맛집"]
+            "중구 맛집", "성동구 맛집","광진구 맛집","용산구 맛집","마포구 맛집","강서구 맛집","양천구 맛집","구로구 맛집","영등포구 맛집",
+             "동작구 맛집","금천구 맛집", "관악구 맛집","서초구 맛집","강남구 맛집","송파구 맛집","강동구 맛집"]
 
 
 for seoul_gu in seoul_gus:
@@ -54,14 +55,14 @@ for seoul_gu in seoul_gus:
         scroll1 = driver.find_element_by_css_selector("#_pcmap_list_scroll_container > ul > li:nth-child(10)")
         actions.move_to_element(scroll1).perform()
 
-        scroll2 = driver.find_element_by_css_selector("#_pcmap_list_scroll_container > ul > li:nth-child(20)")
-        actions.move_to_element(scroll2).perform()
+        # scroll2 = driver.find_element_by_css_selector("#_pcmap_list_scroll_container > ul > li:nth-child(20)")
+        # actions.move_to_element(scroll2).perform()
 
-        scroll3 = driver.find_element_by_css_selector("#_pcmap_list_scroll_container > ul > li:nth-child(30)")
-        actions.move_to_element(scroll3).perform()
+        # scroll3 = driver.find_element_by_css_selector("#_pcmap_list_scroll_container > ul > li:nth-child(30)")
+        # actions.move_to_element(scroll3).perform()
 
-        scroll4 = driver.find_element_by_css_selector("#_pcmap_list_scroll_container > ul > li:nth-child(40)")
-        actions.move_to_element(scroll4).perform()
+        # scroll4 = driver.find_element_by_css_selector("#_pcmap_list_scroll_container > ul > li:nth-child(40)")
+        # actions.move_to_element(scroll4).perform()
 
         # scroll5 = driver.find_element_by_css_selector("#_pcmap_list_scroll_container > ul > li:nth-child(50)")
         # actions.move_to_element(scroll5).perform()
@@ -103,7 +104,7 @@ for seoul_gu in seoul_gus:
                         "like": 0,
                         "review": []
                     }
-                    print(doc)
+                    print(doc["name"])
                     db.shops.insert_one(doc)
                     driver.switch_to.default_content()
                     driver.switch_to.frame(searchiframe)
